@@ -2,9 +2,8 @@ import pandas as pd
 
 class ETLProcesador:
     def __init__(self, columnas_a_eliminar):
-        self.columnas_a_eliminar = columnas_a_eliminar + [
-            'MOTIVOS2', 'VALOR PRETENSIONES (EN $)', 'CAUSA'
-        ]
+        self.columnas_a_eliminar = columnas_a_eliminar 
+
 
     def filtrar_por_anio(self, df, anio_min=2000):
         if not pd.api.types.is_datetime64_any_dtype(df['PRESENTACIÓN DEMANDA']):
@@ -68,7 +67,7 @@ class ETLProcesador:
         df['RED'] = df['RED'].str.capitalize()
         return df    
 
-        def homologar_tipo_relacion(self, df):
+    def homologar_tipo_relacion(self, df):
         # Homologación de valores en el campo TIPO RELACIÓN
         reemplazos_jubilado = {
             'extrabajador': 'Jubilado', 'jubilado ': 'Jubilado'
@@ -90,7 +89,7 @@ class ETLProcesador:
         return df  
 
 
-   def limpiar_pretension(self, df):
+    def limpiar_pretension(self, df):
         # Limpieza y homologación del campo PRETENSIÓN
         df['PRETENSIÓN'] = df['PRETENSIÓN'].str.lower()
         patrones = {
